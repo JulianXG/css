@@ -19,8 +19,11 @@ public abstract class BaseFragment extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(getLayoutId(), container, false);
         ButterKnife.bind(this, root);
+        setupPresenter();
         return root;
     }
+
+    protected abstract void setupPresenter();
 
     protected abstract int getLayoutId();
 }

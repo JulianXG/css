@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">社区服务</string>
     <string name="enter_main">进入主界面</string>
-    <string name="skip"><![CDATA[跳过 >]]></string>
+    <string name="tutorial_skip"><![CDATA[跳过 >]]></string>
 
     <string name="hint_input_username">请填写用户名</string>
     <string name="hint_input_password">请输入密码</string>
@@ -9,4 +9,92 @@
     <string name="sign_up_ask">还没有账号?创建一个</string>
     <string name="nearby_community">附近小区</string>
     <string name="search">搜索</string>
+    <string name="locating">正在定位中……</string>
+    <string name="logining">登录中……</string>
+    <string name="identify_type">身份认证</string>
+    <string name="skip">跳过</string>
+    <string name="notice_board">公告栏</string>
+    <string name="payment">缴费</string>
+    <string name="repair">报修</string>
+    <string name="me">我</string>
+    <string name="like">点赞</string>
+    <string name="comment">评论</string>
+    <string name="repost">转发</string>
+    <string name="my_message">我的消息</string>
+    <string name="payment_record">缴费记录</string>
+    <string name="profile">个人资料</string>
+    <string name="repair_record">报修记录</string>
+    <string name="about">关于</string>
+    <string name="logout">退出登录</string>
+    <string name="pull_load_more">上拉加载更多</string>
+    <string name="introduction">介绍</string>
+    <string name="cooperation">商务合作</string>
+    <string name="check_update">检测更新</string>
+    <string name="feedback">意见反馈</string>
+    <string name="help">帮助</string>
+    <string name="filter">筛选</string>
+    <string name="no_payment_require">这个月没有需要交费项目</string>
+    <string name="no_need_repair">目前没有等处理的报修项目</string>
+    <string name="no_message">暂时没有消息</string>
+    <string name="no_payment_record">暂时没有缴费记录</string>
+    <string name="no_repair_record">暂时没有报修记录</string>
+    <string name="avatar">头像</string>
+    <string name="avatar_image">背景图</string>
+    <string name="nickname">昵称</string>
+    <string name="birthday">生日</string>
+    <string name="address">地址</string>
+    <string name="bind_tel">绑定手机</string>
+    <string name="gender">性别</string>
+    <string name="all_check">全选</string>
+    <string name="confirm_pay">确认缴费</string>
+    <string name="amount_title">合计总额：</string>
+
+    <string name="introduction_content">
+        人类因为交通技术和信息技术的高速发展使世界变成了地球村,自此人类彼此距离变得越来越近。\n
+\n
+  互联网尤其是移动互联网时代的到来,让我们彼此的距离变得更近,也能通过信息工具进一步加深彼此了解,使关系进一步发展。自此,分享互助便是邻里之间永恒的话题。\n
+\n
+  信息网络的发展逐步构建了以社区为核心的智慧社区智慧城市,促成了专注居民服务的发展,让居民既省心又省力地获取服务,让自己的小区生活更加舒适便捷。\n
+\n
+以上就是我们这款APP在做的事情。\n
+\n
+这款APP按照“便民、利民、惠民”的工作理念，通过资源整合，转变社区服务方式，优化社区服务网络，提升社区服务质量，扎实推进社区服务体系建设，让辖区居民享受到本地化、响应快、类型多、品质高的服务。\n
+\n
+我们坚持为物业公司实施物业服务管理平台，提高物业的增值服务，方便社区的居民，目标是完成一项建设和谐社区，服务智慧城市的利国利民的优质工程。\n
+\n
+我们这款社区服务APP的理念是：\n
+\n
+规范化：通过手机APP平台的统一管理，提升物业服务标准，实现公告栏、线上缴费、报修、意见反馈等服务；\n
+便民化：居民通过手机APP平台，便捷享受物业服务，增进邻里交流，培养社区文化。\n
+    </string>
+    <string name="business_cooperation">商业合作</string>
+
+    <string name="business_cooperation_content">
+        本APP的宗旨是为居民的健康与便捷着想，是竭诚为居民服务的产品，努力为居民提供便捷优质的服务，期待与优秀的您合作。
+    </string>
+    <string name="property_cooperation">物业合作</string>
+    <string name="property_cooperation_content">
+        本APP十分看重与物业公司的合作，愿意提供物业管理软件给物业公司，以便为居民提供更好的管家式服务，让居民生活更便利，期待与优秀的您合作。
+    </string>
+    <string name="contact_us">联系我们</string>
+    <string name="xiaogangla_qq_com">邮箱：xiaogangla@qq.com（宋璐）</string>
+    <string name="checking_update">正在检测更新……</string>
+    <string name="already_newest">已经是最新</string>
+    <string name="business_contact">联系方式：0519-83483445</string>
+    <string name="property_contact">联系方式：0519-82847440</string>
+    <string name="feedback_hint">请输入你想对我们说的一些意见</string>
+    <string name="send_feedback">发表意见</string>
+    <string name="send_feedback_success">你的意见我们已经收到，我们会认真倾听你说的每一条意见</string>
+    <string name="feedback_require">意见不能为空</string>
+    <string name="send">发送</string>
+    <string name="new_notice_hint">说些什么吧……</string>
+    <string name="talk_a_talk">说一说</string>
+    <string name="notice_content_empty">说一说内容不能为空</string>
+    <string name="home_repair">房屋维修</string>
+    <string name="public_facilities">公共设施</string>
+    <string name="hint_reporter">请输入报修人姓名</string>
+    <string name="hint_reporter_tel">请输入报修人手机号</string>
+    <string name="expect_time">期望解决时间</string>
+    <string name="hint_repair_description">请输入报修相关情况描述</string>
+    <string name="water_electricity_gas_repair">水电燃气</string>
 </resources>

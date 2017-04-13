@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="community_names">
+        <item>大成名店公园</item>
+        <item>赛世香樟园</item>
+        <item>东方天郡</item>
+        <item>栖霞东方天郡</item>
+        <item>栖园</item>
+        <item>汇杰文庭</item>
+        <item>万山庭院</item>
+        <item>尚东花园</item>
+        <item>山水风华</item>
+    </array>
+
+    <array name="community_locations">
+        <item>文苑路108号</item>
+        <item>杉湖西路9号</item>
+        <item>杉湖西路8号</item>
+        <item>芙蓉五号与东亭北路交叉口</item>
+        <item>杉湖东路18号</item>
+        <item>仙林大道以南，学子路以东</item>
+        <item>仙林大道128号</item>
+        <item>仙林大道118号</item>
+        <item>汇通路9号</item>
+    </array>
+
+    <array name="community_distances">
+        <item>400米</item>
+        <item>600米</item>
+        <item>800米</item>
+        <item>800米</item>
+        <item>900米</item>
+        <item>1.1公里</item>
+        <item>1.2公里</item>
+        <item>1.3公里</item>
+        <item>1.5公里</item>
+    </array>
+
+    <array name="identities">
+        <item>我是业主本人</item>
+        <item>我是业主家人</item>
+        <item>我是租户</item>
+    </array>
+
+    <array name="messages_username">
+        <item>致一物业服务部</item>
+        <item>致一物业安保部</item>
+        <item>稻花香（业主A）</item>
+        <item>蕉下客（业主B）</item>
+    </array>
+
+    <array name="messages_avatar">
+        <item>http://images.newsmth.net/nForum/img/logo.gif</item>
+        <item>http://images.newsmth.net/nForum/img/logo.gif</item>
+        <item>http://images.newsmth.net/nForum/img/logo.gif</item>
+        <item>http://images.newsmth.net/nForum/img/logo.gif</item>
+    </array>
+
+    <array name="messages_from">
+        <item>后台管理系统</item>
+        <item>后台管理系统</item>
+        <item>手机APP</item>
+        <item>手机APP</item>
+    </array>
+
+    <array name="messages_content">
+        <item>尊敬的业主(住户)：\n
+        　　接水务局通知，因管网施工。2月24日22时至25日8时，本小区供水将受到影响。请各位业主提前做好储水准备。届时请关好您里的水龙头，以免给您造成不必要的损失。\n
+        　　给您带来不便!\n
+        　　敬请谅解!\n
+        　　水务公司：0519-82255956\n
+        　　物业客服：0519-83066900\n</item>
+        <item>尊敬的业主(住户)：\n
+        　　进入春季以来，周边地区盗窃事件频发，不同程度的火灾也时有发生，给业主生命财产安全带来较大的威胁。为保证我公司管辖小区业主生命财产安全，消除隐患，做好防火防盗工作，社区决定开展春季防火防盗、安全事项宣传活动，同时社区组织了小喇叭温馨提示、志愿者巡逻等。请居民注意安全，小心火烛，加强自身防范，杜绝安全事故在我社区发生。\n
+        　　保安室：0519-82255978\n
+        　　物业客服：0519-83066900\n</item>
+        <item>                       失物招领\n
+        本人于昨日下午五点在小区公共区域的健身器材处捡到一个黑色的皮夹，里面有现金若干，会员卡若干，请失主和知情者及时与我联系。\n
+        　　本人联系方式：18754924654</item>
+        <item>                       旧物交换\n
+        　　谁家没有几件闲置的东西？ 留着无用，弃之可惜，那就以物换物和邻居们来交换吧~ 目前我家有如下旧物，感兴趣的邻居们记得和我联系哟~                                                          1、八成新的木吉他，外观完好，不过需要自行调音；                2、全新的取暖器，买完之后家里就装了地暖，所以都没用上；         3、七成新的儿童餐椅，有些剐蹭的痕迹但是不影响使用。\n
+        　　本人联系方式：13827384325</item>
+
+    </array>
+
+    <array name="messages_post_time">
+        <item>2017年2月23号</item>
+        <item>2017年3月2号</item>
+        <item>2017年3月10号</item>
+        <item>2017年4月2号</item>
+    </array>
+
+    <array name="payment_types">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </array>
+    
+    <array name="payment_names">
+        <item>物业费</item>
+        <item>三月份</item>
+        <item>三月份</item>
+        <item>三月份</item>
+    </array>
+    
+    <array name="payment_deadlines">
+        <item>2017年6月10号</item>
+        <item>2017年4月2号</item>
+        <item>2017年4月3号</item>
+        <item>2017年4月5号</item>
+    </array>
+
+    <array name="payment_status">
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+    </array>
+
+    <array name="payment_amounts">
+        <item>292.8元</item>
+        <item>30.8元</item>
+        <item>17.4元</item>
+        <item>33元</item>
+    </array>
+
+    <array name="payment_detail">
+        <item>2.3元/㎡</item>
+        <item>2.8/㎡</item>
+        <item>0.58元/度</item>
+        <item>2.2元/㎡</item>
+    </array>
+
+    <array name="payment_remarks">
+        <item>假设该业主住宅面积122㎡</item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </array>
+    
+    <array name="repair_reporters">
+        <item>刘女士</item>
+        <item>张先生</item>
+        <item>白小姐</item>
+        <item>刘女士</item>
+        <item>黄先生</item>
+        <item>刘女士</item>
+    </array>
+
+    <array name="repair_types">
+        <item>1</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>3</item>
+        <item>3</item>
+    </array>
+
+    <array name="repair_reporter_tels">
+        <item>手机18763928336</item>
+        <item>手机13782937443</item>
+        <item>手机18639482734</item>
+        <item>手机18763928336</item>
+        <item>手机18739754298</item>
+        <item>手机18763928336</item>
+    </array>
+
+    <array name="repair_report_time">
+        <item>2017年3月15号 18:23:00</item>
+        <item>2017年1月17号 12:30:00</item>
+        <item>2017年1月28号 9:12:22</item>
+        <item>2017年2月21号 19:33:00</item>
+        <item>2017年4月20号 21:34:00</item>
+        <item>2017年4月3号 23:30:00</item>
+    </array>
+
+    <array name="repair_expect_handle_time">
+        <item>2017年5月1号 12:30:00</item>
+        <item>2017年4月19号 16:23:00</item>
+        <item>2017年5月3号 17:33:00</item>
+        <item>2017年4月21号 13:34:00</item>
+        <item>2017年5月1号 9:45:00</item>
+        <item>2017年5月3号 16:30:00</item>
+        <item>2017年4月25号 20:30:00</item>
+    </array>
+
+    <array name="repair_descriptions">
+        <item>卫生间墙面渗水</item>
+        <item>房间墙面开裂</item>
+        <item>厨房水管漏水</item>
+        <item>保险丝烧坏</item>
+        <item>5楼走廊的消防箱玻璃破裂</item>
+        <item>公共区域健身设施的单杠腐蚀生锈</item>
+    </array>
+
+    <array name="repair_status">
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+    </array>
+</resources>

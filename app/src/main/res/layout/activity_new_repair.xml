@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/partial_toolbar_with_back"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        android:padding="8dp"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/radio_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_home_black_24dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/home_repair"/>
+
+            <RadioButton
+                android:id="@+id/radio_gas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:drawableLeft="@drawable/ic_flash_on_black_24dp"
+                android:text="@string/water_electricity_gas_repair"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_kitchen_black_24dp"
+                android:text="@string/public_facilities"/>
+        </RadioGroup>
+
+        <include layout="@layout/divider"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+            <EditText
+                android:id="@+id/reporter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_reporter"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <include layout="@layout/divider"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+            <EditText
+                android:id="@+id/reporter_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_reporter_tel"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <include layout="@layout/divider"/>
+
+        <LinearLayout
+            android:id="@+id/expect_time_container"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:layout_height="@dimen/toolbar_height">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:text="@string/expect_time"/>
+
+            <TextView
+                android:id="@+id/expect_time"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="end"
+                android:textColor="@android:color/black"/>
+
+            <ImageView
+                android:src="@drawable/ic_chevron_right_black_24dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+        <include layout="@layout/divider"/>
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:padding="8dp"
+            android:minHeight="144dp"
+            android:gravity="start"
+            android:hint="@string/hint_repair_description"/>
+    </LinearLayout>
+
+</LinearLayout>

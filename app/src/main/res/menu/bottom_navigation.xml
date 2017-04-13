@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/board"
+        android:icon="@drawable/ic_forum_black_24dp"
+        android:title="@string/notice_board"/>
+
+    <item
+        android:id="@+id/payment"
+        android:icon="@drawable/ic_payment_black_24dp"
+        android:title="@string/payment"/>
+
+    <item
+        android:id="@+id/repair"
+        android:icon="@drawable/ic_build_black_24dp"
+        android:title="@string/repair"/>
+
+    <item
+        android:id="@+id/me"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/me"/>
+</menu>

@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="cn.kalyter.css">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".util.App"
         android:allowBackup="true"
@@ -15,12 +17,25 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.WelcomeActivity"/>
 
+        <activity android:name=".view.WelcomeActivity"/>
         <activity android:name=".view.LoginActivity"/>
         <activity android:name=".view.LocateCommunityActivity"/>
         <activity android:name=".view.ChooseCityActivity"/>
         <activity android:name=".view.SearchCommunityActivity"/>
+        <activity android:name=".view.IdentityTypeActivity"/>
+        <activity android:name=".view.MainActivity"/>
+        <activity android:name=".view.MyMessageActivity"/>
+        <activity android:name=".view.PaymentRecordActivity"/>
+        <activity android:name=".view.RepairRecordActivity"/>
+        <activity android:name=".view.ProfileActivity"/>
+        <activity android:name=".view.CooperationActivity"/>
+        <activity android:name=".view.HelpActivity"/>
+        <activity android:name=".view.AboutActivity"/>
+        <activity android:name=".view.IntroductionActivity"/>
+        <activity android:name=".view.FeedbackActivity"/>
+        <activity android:name=".view.NewNoticeActivity"/>
+        <activity android:name=".view.NewRepairActivity"/>
     </application>
 
 </manifest>

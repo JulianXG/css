@@ -10,6 +10,12 @@ import cn.kalyter.css.util.BaseView;
 public interface SplashContract {
     interface View extends BaseView {
         void showTutorial();
+
+        void showLogin();
+
+        void showMain();
+
+        void showLocate();
     }
 
     interface Presenter extends BasePresenter {

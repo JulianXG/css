@@ -18,6 +18,8 @@ import cn.bingoogolapple.bgabanner.BGABanner;
 import cn.bingoogolapple.bgabanner.BGAGuideLinkageLayout;
 import cn.kalyter.css.R;
 import cn.kalyter.css.contract.WelcomeContract;
+import cn.kalyter.css.presenter.WelcomePresenter;
+import cn.kalyter.css.util.App;
 import cn.kalyter.css.util.BaseActivity;
 
 /**
@@ -25,7 +27,6 @@ import cn.kalyter.css.util.BaseActivity;
  */
 
 public class WelcomeActivity extends BaseActivity implements WelcomeContract.View{
-
 
     @BindView(R.id.tutorial_background)
     BGABanner mTutorialBackground;
@@ -37,6 +38,7 @@ public class WelcomeActivity extends BaseActivity implements WelcomeContract.Vie
     TextView mSkip;
     @BindView(R.id.enter)
     Button mEnter;
+    private WelcomeContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,7 @@ public class WelcomeActivity extends BaseActivity implements WelcomeContract.Vie
 
     @Override
     protected void setupPresenter() {
-
+        mPresenter = new WelcomePresenter(this, App.getInjectClass().getSplashSource(), this);
     }
 
     @Override
@@ -69,15 +71,15 @@ public class WelcomeActivity extends BaseActivity implements WelcomeContract.Vie
             }
         });
         mTutorialBackground.setData(Arrays.asList(
-                R.drawable.uoko_guide_background_1,
-                R.drawable.uoko_guide_background_2,
-                R.drawable.uoko_guide_background_3),
+                R.drawable.bg_tutorial_1,
+                R.drawable.bg_tutorial_2,
+                R.drawable.bg_tutorial_3),
                 Arrays.asList("", "", ""));
 
         mTutorialForeground.setData(
-                R.drawable.uoko_guide_foreground_1,
-                R.drawable.uoko_guide_foreground_2,
-                R.drawable.uoko_guide_foreground_3);
+                R.drawable.fore_bg_tutorial_1,
+                R.drawable.fore_bg_tutorial_2,
+                R.drawable.fore_bg_tutorial_3);
         mTutorialBackground.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -105,8 +107,7 @@ public class WelcomeActivity extends BaseActivity implements WelcomeContract.Vie
                 new BGABanner.GuideDelegate() {
                     @Override
                     public void onClickEnterOrSkip() {
-                        showLogin();
-                        finish();
+                        mPresenter.loadNext();
                     }
                 });
     }
@@ -114,5 +115,6 @@ public class WelcomeActivity extends BaseActivity implements WelcomeContract.Vie
     @Override
     public void showLogin() {
         startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 }

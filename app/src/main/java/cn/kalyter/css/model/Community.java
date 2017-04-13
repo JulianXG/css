@@ -7,7 +7,7 @@ package cn.kalyter.css.model;
 public class Community {
     private Long id;
     private String name;
-    private Integer distance;
+    private String distance;
     private String location;
     private Integer cityId;
 
@@ -27,11 +27,11 @@ public class Community {
         this.name = name;
     }
 
-    public Integer getDistance() {
+    public String getDistance() {
         return distance;
     }
 
-    public void setDistance(Integer distance) {
+    public void setDistance(String distance) {
         this.distance = distance;
     }
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/partial_toolbar_with_back"/>
+
+    <EditText
+        android:id="@+id/notice_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="144dp"
+        android:background="@null"
+        android:gravity="start"
+        android:padding="8dp"
+        android:hint="@string/new_notice_hint"/>
+
+</LinearLayout>
