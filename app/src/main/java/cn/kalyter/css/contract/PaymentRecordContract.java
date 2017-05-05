@@ -12,9 +12,35 @@ import cn.kalyter.css.util.BaseView;
 public interface PaymentRecordContract {
     interface View extends BaseView {
         void setAdapter(RecyclerView.Adapter adapter);
+
+        void showLoadMore(boolean isShow);
+
+        void showRefreshing(boolean isRefreshing);
+
+        void showNoMore();
+
+        void showNoSearchResult();
+
+        void showKeyword(String keyword);
+
+        void showOwner();
+
+        void showProperty();
+
+        void showNoItems();
+
+        void clearNoItems();
     }
 
     interface Presenter extends BasePresenter {
-        void loadMyPaymentRecord();
+        void refresh();
+
+        void loadMore();
+
+        void search(String keyword);
+
+        void loadRole();
+
+        void toggleStatus(int status);
     }
 }

@@ -7,7 +7,11 @@ import java.util.Date;
  */
 
 public class Repair {
-    private Long id;
+    private int id;
+    private int userId;
+    private int communityId;
+    private House house;
+    private int houseId;
     private String code;
     private String reporter;
     private int type;
@@ -17,11 +21,11 @@ public class Repair {
     private String description;
     private int status;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -87,5 +91,37 @@ public class Repair {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public int getCommunityId() {
+        return communityId;
+    }
+
+    public void setCommunityId(int communityId) {
+        this.communityId = communityId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(int houseId) {
+        this.houseId = houseId;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
 }

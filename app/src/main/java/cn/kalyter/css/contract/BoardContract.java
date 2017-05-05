@@ -1,6 +1,7 @@
 package cn.kalyter.css.contract;
 
 import cn.kalyter.css.model.Community;
+import cn.kalyter.css.model.User;
 import cn.kalyter.css.util.BasePresenter;
 import cn.kalyter.css.util.BaseView;
 import cn.kalyter.css.util.MessageRecyclerAdapter;
@@ -20,15 +21,23 @@ public interface BoardContract {
         void showRefreshing(boolean isRefreshing);
 
         void setBoardRecyclerAdapter(MessageRecyclerAdapter adapter);
+
+        void showNoMore();
+
+        void showUser(User user);
+
+        void showNoSearchResult();
+
+        void showKeyword(Community community, String keyword);
     }
 
     interface Presenter extends BasePresenter {
         void loadCommunity();
 
-        void loadBoardMessage();
-
         void refresh();
 
         void loadMore();
+
+        void search(String keyword);
     }
 }

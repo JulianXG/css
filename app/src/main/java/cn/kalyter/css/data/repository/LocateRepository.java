@@ -35,10 +35,10 @@ public class LocateRepository implements LocateSource {
                 String[] locations = mContext.getResources().getStringArray(R.array.community_locations);
                 for (int i = 0; i < names.length; i++) {
                     Community community = new Community();
-                    community.setId((long) (i + 1000));
-                    community.setName(names[i]);
-                    community.setDistance(distances[i]);
-                    community.setLocation(locations[i]);
+//                    community.setId((long) (i + 1000));
+//                    community.setName(names[i]);
+//                    community.setDistance(distances[i]);
+//                    community.setLocation(locations[i]);
                     communities.add(community);
                 }
                 data.setData(communities);

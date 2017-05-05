@@ -12,9 +12,39 @@ import cn.kalyter.css.util.BaseView;
 public interface RepairContract {
     interface View extends BaseView {
         void setAdapter(RecyclerView.Adapter adapter);
+
+        void showLoadMore(boolean isShow);
+
+        void showRefreshing(boolean isRefreshing);
+
+        void showNoMore();
+
+        void showKeyword(String keyword);
+
+        void showNoMoreItems();
+
+        void clearNoMoreItems();
+
+        void showLoading();
+
+        void closeLoading();
+
+        void showChangeStatusSuccess();
+
+        void showChangeStatusFail();
+
+        void showConfirmChangeStatus(int repairId, int status);
     }
 
     interface Presenter extends BasePresenter {
-        void loadRepair();
+        void toggleStatus(Integer status);
+
+        void refresh();
+
+        void loadMore();
+
+        void search(String keyword);
+
+        void changeRepairStatus(int repairId, int status);
     }
 }

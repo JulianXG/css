@@ -5,19 +5,21 @@ package cn.kalyter.css.model;
  */
 
 public class User {
-    private Long id;
-    private Long communityId;
-    private String communityName;
-    private Integer identityType;
-    private String username;
-    private String nickname;
-    private String password;
     private String avatar;
     private String background;
     private String birthday;
+    private Community community;
+    private int communityId;
     private String gender;
-    private String address;
-    private String bindTel;
+    private House house;
+    private Integer houseId;
+    private Integer id;
+    private String nickname;
+    private String password;
+    private Role role;
+    private int roleId;
+    private String tel;
+    private String username;
 
     public String getAvatar() {
         return avatar;
@@ -43,6 +45,22 @@ public class User {
         this.birthday = birthday;
     }
 
+    public Community getCommunity() {
+        return community;
+    }
+
+    public void setCommunity(Community community) {
+        this.community = community;
+    }
+
+    public int getCommunityId() {
+        return communityId;
+    }
+
+    public void setCommunityId(int communityId) {
+        this.communityId = communityId;
+    }
+
     public String getGender() {
         return gender;
     }
@@ -51,60 +69,20 @@ public class User {
         this.gender = gender;
     }
 
-    public String getAddress() {
-        return address;
+    public Integer getHouseId() {
+        return houseId;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setHouseId(Integer houseId) {
+        this.houseId = houseId;
     }
 
-    public String getBindTel() {
-        return bindTel;
-    }
-
-    public void setBindTel(String bindTel) {
-        this.bindTel = bindTel;
-    }
-
-    public String getCommunityName() {
-        return communityName;
-    }
-
-    public void setCommunityName(String communityName) {
-        this.communityName = communityName;
-    }
-
-    public Integer getIdentityType() {
-        return identityType;
-    }
-
-    public void setIdentityType(Integer identityType) {
-        this.identityType = identityType;
-    }
-
-    public Long getCommunityId() {
-        return communityId;
-    }
-
-    public void setCommunityId(Long communityId) {
-        this.communityId = communityId;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getNickname() {
@@ -121,5 +99,45 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
 }

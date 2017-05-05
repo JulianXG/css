@@ -63,7 +63,7 @@ public class SplashRepository implements SplashSource {
 
     @Override
     public int getSplashDelay() {
-        return mSharedPreferences.getInt(KEY_SPLASH_DELAY, 0);
+        return mSharedPreferences.getInt(KEY_SPLASH_DELAY, 3);
     }
 
     @Override

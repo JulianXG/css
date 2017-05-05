@@ -1,14 +1,13 @@
 package cn.kalyter.css.presenter;
 
-import java.util.concurrent.TimeUnit;
-
 import cn.kalyter.css.contract.LoginContract;
 import cn.kalyter.css.data.source.SplashSource;
 import cn.kalyter.css.data.source.UserApi;
 import cn.kalyter.css.data.source.UserSource;
-import cn.kalyter.css.model.LoginUser;
 import cn.kalyter.css.model.Response;
 import cn.kalyter.css.model.User;
+import cn.kalyter.css.util.Config;
+import cn.kalyter.css.util.Util;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -39,17 +38,16 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void login(LoginUser loginUser) {
+    public void login(final User user) {
         mView.showLogining();
-        mUserApi.login(loginUser)
-                .delay(1, TimeUnit.SECONDS)
+        user.setPassword(Util.md5(user.getPassword()));
+        mUserApi.login(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Response<User>>() {
                     @Override
                     public void onCompleted() {
-                        mView.showSelectCommunity();
-                        mSplashSource.setIsLogin(true);
+
                     }
 
                     @Override
@@ -60,11 +58,12 @@ public class LoginPresenter implements LoginContract.Presenter {
 
                     @Override
                     public void onNext(Response<User> userResponse) {
-                        User data = userResponse.getData();
-                        if (data == null) {
+                        if (userResponse.getCode() == Config.RESPONSE_USERNAME_OR_PASSWORD_ERROR) {
                             mView.showAuthFailed();
-                        } else {
-                            mUserSource.saveUser(data);
+                        } else if (userResponse.getCode() == Config.RESPONSE_SUCCESS_CODE){
+                            mUserSource.saveUser(userResponse.getData());
+                            mView.showMain();
+                            mSplashSource.setIsLogin(true);
                         }
                     }
                 });

@@ -1,7 +1,6 @@
 package cn.kalyter.css.contract;
 
 import android.support.v7.widget.RecyclerView;
-import android.widget.ListAdapter;
 
 import cn.kalyter.css.util.BasePresenter;
 import cn.kalyter.css.util.BaseView;
@@ -15,6 +14,12 @@ public interface PaymentContract {
         void showAmount(Double amount);
 
         void setAdapter(RecyclerView.Adapter adapter);
+
+        void showLoadMore(boolean isShow);
+
+        void showRefreshing(boolean isRefreshing);
+
+        void showNoPayment();
     }
 
     interface Presenter extends BasePresenter {

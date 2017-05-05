@@ -6,18 +6,19 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/profile_container"
-        android:background="@drawable/bg_me"
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_marginBottom="24dp"
         android:layout_width="match_parent"
         android:layout_height="144dp">
 
         <ImageView
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
             android:id="@+id/avatar"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="24dp"
+            android:layout_centerInParent="true"
             android:layout_width="72dp"
             android:layout_height="72dp"/>
 
@@ -25,10 +26,11 @@
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:textSize="24sp"
             android:textColor="@android:color/black"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
 
         <TextView
             android:id="@+id/membership_point"
@@ -36,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textSize="24sp"/>
-    </LinearLayout>
+    </RelativeLayout>
 
     <com.leon.lib.settingview.LSettingItem
         android:id="@+id/my_message"
@@ -46,16 +48,40 @@
         android:layout_height="wrap_content"/>
 
     <com.leon.lib.settingview.LSettingItem
+        android:id="@+id/my_message_property"
+        android:visibility="gone"
+        app:leftIcon="@drawable/ic_comment_black_24dp"
+        app:leftText="@string/message_center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.leon.lib.settingview.LSettingItem
         android:id="@+id/payment_record"
         app:leftIcon="@drawable/ic_shopping_basket_black_24dp"
-        app:leftText="@string/payment_record"
+        app:leftText="@string/my_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.leon.lib.settingview.LSettingItem
+        android:id="@+id/payment_record_property"
+        android:visibility="gone"
+        app:leftIcon="@drawable/ic_shopping_basket_black_24dp"
+        app:leftText="@string/payment_center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <com.leon.lib.settingview.LSettingItem
         android:id="@+id/repair_record"
         app:leftIcon="@drawable/ic_build_black_24dp"
-        app:leftText="@string/repair_record"
+        app:leftText="@string/my_repair"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.leon.lib.settingview.LSettingItem
+        android:id="@+id/repair_record_property"
+        android:visibility="gone"
+        app:leftIcon="@drawable/ic_build_black_24dp"
+        app:leftText="@string/repair_center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

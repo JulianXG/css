@@ -5,9 +5,12 @@ import android.content.Context;
 import java.util.List;
 
 import cn.kalyter.css.contract.MyMessageContract;
-import cn.kalyter.css.data.source.MessageSource;
+import cn.kalyter.css.data.source.MessageApi;
+import cn.kalyter.css.data.source.UserSource;
 import cn.kalyter.css.model.Message;
 import cn.kalyter.css.model.Response;
+import cn.kalyter.css.model.User;
+import cn.kalyter.css.util.Config;
 import cn.kalyter.css.util.MessageRecyclerAdapter;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -21,26 +24,92 @@ public class MyMessagePresenter implements MyMessageContract.Presenter {
     private MyMessageContract.View mView;
     private Context mContext;
     private MessageRecyclerAdapter mMessageRecyclerAdapter;
-    private MessageSource mMessageSource;
+    private UserSource mUserSource;
+    private MessageApi mMessageApi;
+    private User mUser;
+    private String mKeyword = "";
+    private int mCurrentPage = 1;
 
     public MyMessagePresenter(MyMessageContract.View view,
                               Context context,
-                              MessageSource messageSource) {
+                              MessageApi messageApi,
+                              UserSource userSource) {
         mView = view;
         mContext = context;
-        mMessageSource = messageSource;
+        mMessageApi = messageApi;
         mMessageRecyclerAdapter = new MessageRecyclerAdapter(mContext);
+        mUserSource = userSource;
     }
 
     @Override
     public void start() {
         mView.setAdapter(mMessageRecyclerAdapter);
-        loadMyMessage();
+        mUser = mUserSource.getUser();
+        loadRole();
+        refresh();
     }
 
     @Override
-    public void loadMyMessage() {
-        mMessageSource.getMyMessages()
+    public void refresh() {
+        mCurrentPage = 1;
+        mMessageApi.getMessages(mUser.getCommunityId(), Config.PAGE_SIZE,
+                1, mUser.getId(), mKeyword)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Response<List<Message>>>() {
+                    @Override
+                    public void onCompleted() {
+                        mView.showRefreshing(false);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mView.showRefreshing(false);
+                    }
+
+                    @Override
+                    public void onNext(Response<List<Message>> listResponse) {
+                        mMessageRecyclerAdapter.setData(listResponse.getData());
+                    }
+                });
+    }
+
+    @Override
+    public void loadMore() {
+        mMessageApi.getMessages(mUser.getCommunityId(), Config.PAGE_SIZE,
+                mCurrentPage + 1, null, mKeyword)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Response<List<Message>>>() {
+                    @Override
+                    public void onCompleted() {
+                        mView.showLoadMore(false);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mView.showLoadMore(false);
+                    }
+
+                    @Override
+                    public void onNext(Response<List<Message>> listResponse) {
+                        List<Message> data = listResponse.getData();
+                        if (data.size() == 0) {
+                            mView.showNoMore();
+                        } else {
+                            mMessageRecyclerAdapter.addMoreData(data);
+                            mCurrentPage++;
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void search(final String keyword) {
+        mKeyword = keyword;
+        mCurrentPage = 1;
+        mMessageApi.getMessages(mUser.getCommunityId(), Config.PAGE_SIZE,
+                1, null, mKeyword)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Response<List<Message>>>() {
@@ -56,8 +125,24 @@ public class MyMessagePresenter implements MyMessageContract.Presenter {
 
                     @Override
                     public void onNext(Response<List<Message>> listResponse) {
-                        mMessageRecyclerAdapter.setData(listResponse.getData());
+                        List<Message> data = listResponse.getData();
+                        if (data.size() == 0) {
+                            mView.showNoSearchResult();
+                        } else {
+                            mMessageRecyclerAdapter.setData(data);
+                            mView.showKeyword(keyword);
+                        }
                     }
                 });
+    }
+
+    @Override
+    public void loadRole() {
+        if (mUser.getRoleId() == Config.ROLE_PROPERTY) {
+            mUser.setId(null);
+            mView.showProperty();
+        } else if (mUser.getRoleId() == Config.ROLE_OWNER) {
+            mView.showOwner();
+        }
     }
 }

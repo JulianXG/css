@@ -9,6 +9,8 @@ import java.util.Date;
 
 public class Payment {
     private Long id;
+    private int communityId;
+    private int year;
     private String name;
     private String code;
     private Integer type;
@@ -18,6 +20,7 @@ public class Payment {
     private int status;
     private String detail;
     private String remark;
+    private House house;
 
     public int getStatus() {
         return status;
@@ -97,5 +100,29 @@ public class Payment {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public int getCommunityId() {
+        return communityId;
+    }
+
+    public void setCommunityId(int communityId) {
+        this.communityId = communityId;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
 }

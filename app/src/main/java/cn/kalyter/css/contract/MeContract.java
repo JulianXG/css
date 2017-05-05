@@ -13,6 +13,10 @@ public interface MeContract {
         void showLogin();
 
         void showUser(User user);
+
+        void showOwner();
+
+        void showProperty();
     }
 
     interface Presenter extends BasePresenter {

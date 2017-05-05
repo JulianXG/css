@@ -8,6 +8,7 @@ import butterknife.BindView;
 import cn.kalyter.css.R;
 import cn.kalyter.css.contract.MainContract;
 import cn.kalyter.css.presenter.MainPresenter;
+import cn.kalyter.css.util.App;
 import cn.kalyter.css.util.BaseActivity;
 
 /**
@@ -30,7 +31,9 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     @Override
     protected void setupPresenter() {
-        mPresenter = new MainPresenter(this, getSupportFragmentManager(), this);
+        mPresenter = new MainPresenter(this,
+                getSupportFragmentManager(), this,
+                App.getInjectClass().getUserSource());
     }
 
     @Override

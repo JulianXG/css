@@ -1,16 +1,21 @@
 package cn.kalyter.css.view;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 import cn.kalyter.css.R;
@@ -40,11 +45,11 @@ public class MyMessageActivity extends BaseActivity implements MyMessageContract
     BGARefreshLayout mRefresh;
 
     private MyMessageContract.Presenter mPresenter;
+    private String mTitleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTitle.setText(R.string.my_message);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,13 +57,30 @@ public class MyMessageActivity extends BaseActivity implements MyMessageContract
             }
         });
         mToolbar.inflateMenu(R.menu.filter);
+
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                new MaterialDialog.Builder(MyMessageActivity.this)
+                        .title(R.string.keyword_title)
+                        .inputType(InputType.TYPE_CLASS_TEXT)
+                        .input(getString(R.string.hint_keyword_search), null, new MaterialDialog.InputCallback() {
+                            @Override
+                            public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+                                mPresenter.search(input.toString());
+                            }
+                        }).show();
+                return true;
+            }
+        });
         mPresenter.start();
     }
 
     @Override
     protected void setupPresenter() {
         mPresenter = new MyMessagePresenter(this, this,
-                App.getInjectClass().getMessageSource());
+                App.getInjectClass().getMessageApi(),
+                App.getInjectClass().getUserSource());
     }
 
     @Override
@@ -77,6 +99,55 @@ public class MyMessageActivity extends BaseActivity implements MyMessageContract
         refreshViewHolder.setLoadingMoreText(getString(R.string.pull_load_more));
         mRefresh.setRefreshViewHolder(refreshViewHolder);
         mRefresh.setDelegate(this);
+    }
+
+    @Override
+    public void showLoadMore(boolean isShow) {
+        if (isShow) {
+            mRefresh.beginLoadingMore();
+        } else {
+            mRefresh.endLoadingMore();
+        }
+    }
+
+    @Override
+    public void showRefreshing(boolean isRefreshing) {
+        if (isRefreshing) {
+            mRefresh.beginRefreshing();
+        } else {
+            mRefresh.endRefreshing();
+        }
+    }
+
+    @Override
+    public void showNoMore() {
+        Toast.makeText(this, "没有更多了", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showNoSearchResult() {
+        Toast.makeText(this, "抱歉，没有查询到相关信息", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showKeyword(String keyword) {
+        String content = mTitleText;
+        if (!keyword.equals("")) {
+            content = String.format("%s(%s)", mTitleText, keyword);
+        }
+        mTitle.setText(content);
+    }
+
+    @Override
+    public void showOwner() {
+        mTitleText = getString(R.string.my_message);
+        mTitle.setText(mTitleText);
+    }
+
+    @Override
+    public void showProperty() {
+        mTitleText = getString(R.string.message_center);
+        mTitle.setText(mTitleText);
     }
 
     @Override

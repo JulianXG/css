@@ -11,13 +11,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.kalyter.css.R;
+import cn.kalyter.css.model.House;
 import cn.kalyter.css.model.Payment;
 
 /**
@@ -56,13 +56,22 @@ public class PaymentRecyclerAdapter extends RecyclerView.Adapter<PaymentRecycler
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         Payment payment = mData.get(position);
+        House house = payment.getHouse();
         holder.mName.setText(String.format("缴费名称：%s", payment.getName()));
         holder.mAmount.setText(String.format("支付金额：%s元", payment.getAmount()));
         holder.mType.setText(String.format("缴费类别：%s",
                 PaymentType.getPaymentType(payment.getType()).getName()));
-        holder.mDeadline.setText(String.format("截止日期：%s", Config.yyyyMMdd.format(payment.getDeadline())));
-        holder.mDetail.setText(String.format("缴费详情：%s", payment.getDetail()));
-        holder.mRemark.setText(String.format("备 注 ：%s", payment.getRemark()));
+        holder.mDeadline.setText(String.format("截止日期：%s",
+                Config.yyyyMMddHHmmss.format(payment.getDeadline())));
+        holder.mDetail.setText(String.format("缴费房屋：%s %s %s",
+                house.getBuildingId(), house.getUnitId(), house.getRoomId()));
+        String payResult = "";
+        if (payment.getStatus() == Config.STATUS_PAY_REQUIRED) {
+            payResult = Config.PAY_REQUIRED;
+        } else if (payment.getStatus() == Config.STATUS_PAY_FINISHED) {
+            payResult = Config.PAY_FINISHED;
+        }
+        holder.mRemark.setText(String.format("缴费状态：%s", payResult));
         if (hasExtension) {
             holder.mCheck.setChecked(mCheckStatus.get(position));
             holder.mCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -85,9 +94,19 @@ public class PaymentRecyclerAdapter extends RecyclerView.Adapter<PaymentRecycler
         return data;
     }
 
+    public void setPropertyFeeData(List<Payment> data) {
+        for (Payment payment : data) {
+            payment.setType(PaymentType.PROPERTY.getType());
+            payment.setName(PaymentType.PROPERTY.getName());
+        }
+        setData(data);
+    }
+
     public void setData(List<Payment> data) {
         // 初始化Data
-        mData = data;
+        notifyItemRangeRemoved(0, mData.size());
+        mData.clear();
+        mData.addAll(data);
         for (int i = 0; i < mData.size(); i++) {
             if (hasExtension) {
                 mCheckStatus.add(false);
@@ -96,6 +115,16 @@ public class PaymentRecyclerAdapter extends RecyclerView.Adapter<PaymentRecycler
             }
         }
         notifyItemRangeInserted(0, mData.size());
+    }
+
+    public void addPropertyFeeData(List<Payment> data) {
+        for (Payment payment : data) {
+            payment.setType(PaymentType.PROPERTY.getType());
+            payment.setName(PaymentType.PROPERTY.getName());
+        }
+        int prePosition = mData.size() - 1;
+        mData.addAll(data);
+        notifyItemRangeInserted(prePosition, data.size());
     }
 
     public void setAllCheckStatus(boolean allCheckStatus) {

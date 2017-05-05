@@ -1,6 +1,5 @@
 package cn.kalyter.css.contract;
 
-import cn.kalyter.css.model.Community;
 import cn.kalyter.css.util.BasePresenter;
 import cn.kalyter.css.util.BaseView;
 import cn.kalyter.css.util.LocateRecyclerAdapter;
@@ -11,7 +10,7 @@ import cn.kalyter.css.util.LocateRecyclerAdapter;
 
 public interface LocateCommunityContract {
     interface View extends BaseView {
-        void showConfirmIdentify();
+        void showConfirmIdentify(int communityId);
 
         void showChooseCity();
 
@@ -19,14 +18,30 @@ public interface LocateCommunityContract {
 
         void showLocating();
 
+        void showLocatingCommunity();
+
         void showLocateSuccess();
 
         void showLocateFail();
 
+        void showTitle(String title);
+
         void setAdapter(LocateRecyclerAdapter adapter);
+
+        void requestPermissions(String[] permissions);
+
+        void showLocateDenied();
+
+        void showNotCooperate();
+
+        void showSearch();
     }
 
     interface Presenter extends BasePresenter {
         void locateCommunities();
+
+        void locateCurrentPlace();
+
+        void searchCommunity(String city, String keyword);
     }
 }

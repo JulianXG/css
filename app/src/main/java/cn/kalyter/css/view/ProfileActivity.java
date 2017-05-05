@@ -47,6 +47,8 @@ public class ProfileActivity extends BaseActivity implements ProfileContract.Vie
     TextView mGender;
     @BindView(R.id.gender_container)
     LinearLayout mGenderContainer;
+    @BindView(R.id.community_address)
+    TextView mCommunityAddress;
     @BindView(R.id.address)
     TextView mAddress;
     @BindView(R.id.address_container)
@@ -91,13 +93,23 @@ public class ProfileActivity extends BaseActivity implements ProfileContract.Vie
                 .transform(new GlideCircleTransform(this))
                 .into(mAvatarImage);
         Glide.with(this)
-                .load(R.drawable.bg_me)
+                .load(user.getBackground())
+                .placeholder(R.drawable.bg_me)
                 .centerCrop()
                 .into(mBackgroundImage);
         mNickname.setText(user.getNickname());
         mBirthday.setText(user.getBirthday());
         mGender.setText(user.getGender());
-        mAddress.setText(user.getAddress());
-        mBindTel.setText(user.getBindTel());
+        mCommunityAddress.setText(user.getCommunity().getAddress());
+        if (user.getHouse() != null) {
+            mAddressContainer.setVisibility(View.VISIBLE);
+            mAddress.setText(String.format("%s %s %s",
+                    user.getHouse().getBuildingId(),
+                    user.getHouse().getUnitId(),
+                    user.getHouse().getRoomId()));
+        } else {
+            mAddressContainer.setVisibility(View.GONE);
+        }
+        mBindTel.setText(user.getTel());
     }
 }

@@ -12,7 +12,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.kalyter.css.R;
 import cn.kalyter.css.contract.LoginContract;
-import cn.kalyter.css.model.LoginUser;
+import cn.kalyter.css.model.User;
 import cn.kalyter.css.presenter.LoginPresenter;
 import cn.kalyter.css.util.App;
 import cn.kalyter.css.util.BaseActivity;
@@ -31,6 +31,11 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @BindView(R.id.sign_up)
     TextView mSignUp;
 
+    @OnClick(R.id.sign_up)
+    void signUp() {
+        showSelectCommunity();
+    }
+
     private ProgressDialog mProgressDialog;
 
     private LoginContract.Presenter mPresenter;
@@ -38,10 +43,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @OnClick(R.id.login)
     void login() {
         if (!TextUtils.isEmpty(mEmail.getText()) && !TextUtils.isEmpty(mPassword.getText())) {
-            LoginUser loginUser = new LoginUser();
-            loginUser.setUsername(mEmail.getText().toString());
-            loginUser.setPassword(mPassword.getText().toString());
-            mPresenter.login(loginUser);
+            User user = new User();
+            user.setUsername(mEmail.getText().toString());
+            user.setPassword(mPassword.getText().toString());
+            mPresenter.login(user);
         } else {
             showValidError();
         }
@@ -61,9 +66,20 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
     @Override
-    public void showSelectCommunity() {
+    public void showLoginSuccess() {
         mProgressDialog.dismiss();
         Toast.makeText(this, "登录成功！", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMain() {
+        showLoginSuccess();
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
+
+    @Override
+    public void showSelectCommunity() {
         startActivity(new Intent(this, LocateCommunityActivity.class));
         finish();
     }

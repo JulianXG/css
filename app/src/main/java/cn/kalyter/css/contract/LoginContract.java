@@ -1,6 +1,6 @@
 package cn.kalyter.css.contract;
 
-import cn.kalyter.css.model.LoginUser;
+import cn.kalyter.css.model.User;
 import cn.kalyter.css.util.BasePresenter;
 import cn.kalyter.css.util.BaseView;
 
@@ -10,6 +10,10 @@ import cn.kalyter.css.util.BaseView;
 
 public interface LoginContract {
     interface View extends BaseView {
+        void showLoginSuccess();
+
+        void showMain();
+
         void showSelectCommunity();
 
         void showValidError();
@@ -20,6 +24,6 @@ public interface LoginContract {
     }
 
     interface Presenter extends BasePresenter {
-        void login(LoginUser loginUser);
+        void login(User user);
     }
 }

@@ -1,8 +1,9 @@
 package cn.kalyter.css.data.source;
 
-import cn.kalyter.css.model.LoginUser;
 import cn.kalyter.css.model.Response;
 import cn.kalyter.css.model.User;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
 import rx.Observable;
 
 /**
@@ -10,5 +11,9 @@ import rx.Observable;
  */
 
 public interface UserApi {
-    Observable<Response<User>> login(LoginUser loginUser);
+    @POST("/v1/login")
+    Observable<Response<User>> login(@Body User user);
+
+    @POST("/v1/register")
+    Observable<Response> register(@Body User user);
 }

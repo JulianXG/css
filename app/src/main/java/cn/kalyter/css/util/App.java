@@ -3,6 +3,8 @@ package cn.kalyter.css.util;
 import android.app.Application;
 import android.content.Context;
 
+import com.baidu.mapapi.SDKInitializer;
+
 import cn.kalyter.css.data.InjectClass;
 
 /**
@@ -17,6 +19,7 @@ public class App extends Application {
         super.onCreate();
         Context context = getApplicationContext();
         mInjectClass = new InjectClass(context);
+        SDKInitializer.initialize(context);
     }
 
     public static InjectClass getInjectClass() {

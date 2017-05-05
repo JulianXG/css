@@ -37,9 +37,8 @@
     </array>
 
     <array name="identities">
-        <item>我是业主本人</item>
-        <item>我是业主家人</item>
-        <item>我是租户</item>
+        <item>我是物业</item>
+        <item>我是业主</item>
     </array>
 
     <array name="messages_username">

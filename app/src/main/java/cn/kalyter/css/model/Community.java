@@ -5,17 +5,43 @@ package cn.kalyter.css.model;
  */
 
 public class Community {
-    private Long id;
+    private String address;
+    private String code;
+    private String cooperationTime;
+    private int id;
+    private String thirdPartyId;   //暂时默认是百度的唯一ID
     private String name;
-    private String distance;
-    private String location;
-    private Integer cityId;
+    private int propertyId;
 
-    public Long getId() {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getCooperationTime() {
+        return cooperationTime;
+    }
+
+    public void setCooperationTime(String cooperationTime) {
+        this.cooperationTime = cooperationTime;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -27,27 +53,19 @@ public class Community {
         this.name = name;
     }
 
-    public String getDistance() {
-        return distance;
+    public int getPropertyId() {
+        return propertyId;
     }
 
-    public void setDistance(String distance) {
-        this.distance = distance;
+    public void setPropertyId(int propertyId) {
+        this.propertyId = propertyId;
     }
 
-    public String getLocation() {
-        return location;
+    public String getThirdPartyId() {
+        return thirdPartyId;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public Integer getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
+    public void setThirdPartyId(String thirdPartyId) {
+        this.thirdPartyId = thirdPartyId;
     }
 }

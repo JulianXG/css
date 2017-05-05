@@ -1,6 +1,7 @@
 package cn.kalyter.css.data.source;
 
 import cn.kalyter.css.model.Community;
+import cn.kalyter.css.model.Role;
 import cn.kalyter.css.model.User;
 
 /**
@@ -14,5 +15,5 @@ public interface UserSource {
 
     Community getCommunity();
 
-    void setCommunity(Community community);
+    Role getRole();
 }

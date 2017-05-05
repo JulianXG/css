@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,8 +47,14 @@ public class MeFragment extends BaseFragment implements MeContract.View {
     LSettingItem mAbout;
     @BindView(R.id.logout)
     Button mLogout;
-    @BindView(R.id.profile_container)
-    LinearLayout mProfileContainer;
+    @BindView(R.id.background)
+    ImageView mBackground;
+    @BindView(R.id.my_message_property)
+    LSettingItem mMyMessageProperty;
+    @BindView(R.id.payment_record_property)
+    LSettingItem mPaymentRecordProperty;
+    @BindView(R.id.repair_record_property)
+    LSettingItem mRepairRecordProperty;
 
     private MeContract.Presenter mPresenter;
 
@@ -74,6 +80,14 @@ public class MeFragment extends BaseFragment implements MeContract.View {
             }
         });
 
+        mMyMessageProperty.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
+                @Override
+                public void click() {
+                    startActivity(new Intent(getContext(), MyMessageActivity.class));
+                }
+        });
+
+
         mPaymentRecord.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
             @Override
             public void click() {
@@ -81,7 +95,21 @@ public class MeFragment extends BaseFragment implements MeContract.View {
             }
         });
 
+        mPaymentRecordProperty.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
+            @Override
+            public void click() {
+                startActivity(new Intent(getContext(), PaymentRecordActivity.class));
+            }
+        });
+
         mRepairRecord.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
+            @Override
+            public void click() {
+                startActivity(new Intent(getContext(), RepairRecordActivity.class));
+            }
+        });
+
+        mRepairRecordProperty.setmOnLSettingItemClick(new LSettingItem.OnLSettingItemClick() {
             @Override
             public void click() {
                 startActivity(new Intent(getContext(), RepairRecordActivity.class));
@@ -127,9 +155,34 @@ public class MeFragment extends BaseFragment implements MeContract.View {
     public void showUser(User user) {
         Glide.with(this)
                 .load(user.getAvatar())
+                .placeholder(R.drawable.ic_person_black_24dp)
                 .centerCrop()
                 .transform(new GlideCircleTransform(getContext()))
                 .into(mAvatar);
         mUsername.setText(user.getNickname());
+        Glide.with(this)
+                .load(user.getBackground())
+                .centerCrop()
+                .into(mBackground);
+    }
+
+    @Override
+    public void showOwner() {
+        mMyMessage.setVisibility(View.VISIBLE);
+        mPaymentRecord.setVisibility(View.VISIBLE);
+        mRepairRecord.setVisibility(View.VISIBLE);
+        mMyMessageProperty.setVisibility(View.GONE);
+        mPaymentRecordProperty.setVisibility(View.GONE);
+        mRepairRecordProperty.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showProperty() {
+        mMyMessage.setVisibility(View.GONE);
+        mPaymentRecord.setVisibility(View.GONE);
+        mRepairRecord.setVisibility(View.GONE);
+        mMyMessageProperty.setVisibility(View.VISIBLE);
+        mPaymentRecordProperty.setVisibility(View.VISIBLE);
+        mRepairRecordProperty.setVisibility(View.VISIBLE);
     }
 }

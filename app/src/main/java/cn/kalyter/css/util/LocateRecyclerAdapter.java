@@ -50,9 +50,8 @@ public class LocateRecyclerAdapter extends RecyclerView.Adapter<LocateRecyclerAd
     @Override
     public void onBindViewHolder(LocateViewHolder holder, int position) {
         final Community community = mData.get(position);
-        holder.mCommunity.setText(String.format(
-                "%s(%s)", community.getName(), community.getDistance()));
-        holder.mLocation.setText(community.getLocation());
+        holder.mCommunity.setText(community.getName());
+        holder.mAddress.setText(community.getAddress());
         holder.mContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,8 +72,8 @@ public class LocateRecyclerAdapter extends RecyclerView.Adapter<LocateRecyclerAd
     class LocateViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.community)
         TextView mCommunity;
-        @BindView(R.id.location)
-        TextView mLocation;
+        @BindView(R.id.address)
+        TextView mAddress;
         @BindView(R.id.container)
         LinearLayout mContainer;
 

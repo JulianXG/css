@@ -3,19 +3,18 @@ package cn.kalyter.css.presenter;
 import android.content.Context;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import cn.kalyter.css.contract.BoardContract;
-import cn.kalyter.css.data.source.MessageSource;
+import cn.kalyter.css.data.source.MessageApi;
 import cn.kalyter.css.data.source.UserSource;
 import cn.kalyter.css.model.Community;
 import cn.kalyter.css.model.Message;
 import cn.kalyter.css.model.Response;
+import cn.kalyter.css.model.User;
+import cn.kalyter.css.util.Config;
 import cn.kalyter.css.util.MessageRecyclerAdapter;
-import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -25,17 +24,21 @@ import rx.schedulers.Schedulers;
 public class BoardPresenter implements BoardContract.Presenter {
     private BoardContract.View mView;
     private UserSource mUserSource;
-    private MessageSource mMessageSource;
+    private MessageApi mMessageApi;
     private MessageRecyclerAdapter mMessageRecyclerAdapter;
     private Context mContext;
+    private int mCurrentPage = 1;
+    private User mUser;
+    private Community mCommunity;
+    private String mKeyword = "";
 
     public BoardPresenter(BoardContract.View view,
                           UserSource userSource,
-                          MessageSource messageSource,
+                          MessageApi messageApi,
                           Context context) {
         mView = view;
         mUserSource = userSource;
-        mMessageSource = messageSource;
+        mMessageApi = messageApi;
         mContext = context;
         mMessageRecyclerAdapter = new MessageRecyclerAdapter(context, true);
     }
@@ -44,35 +47,24 @@ public class BoardPresenter implements BoardContract.Presenter {
     public void start() {
         mView.setBoardRecyclerAdapter(mMessageRecyclerAdapter);
         loadCommunity();
-        loadBoardMessage();
+        refresh();
+        mView.showUser(mUser);
     }
 
     @Override
     public void loadCommunity() {
-        Community community = mUserSource.getCommunity();
-        mView.showCommunity(community);
-    }
-
-    @Override
-    public void loadBoardMessage() {
-        mMessageSource.getMessages()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Response<List<Message>>>() {
-                    @Override
-                    public void call(Response<List<Message>> listResponse) {
-                        mMessageRecyclerAdapter.setData(listResponse.getData());
-                    }
-                });
+        mUser = mUserSource.getUser();
+        mCommunity = mUserSource.getCommunity();
+        mView.showCommunity(mCommunity);
     }
 
     @Override
     public void refresh() {
-        Observable.just(0)
-                .delay(1, TimeUnit.SECONDS)
+        mCurrentPage = 1;
+        mMessageApi.getMessages(mCommunity.getId(), Config.PAGE_SIZE, 1, null, mKeyword)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Integer>() {
+                .subscribe(new Subscriber<Response<List<Message>>>() {
                     @Override
                     public void onCompleted() {
                         mView.showRefreshing(false);
@@ -80,26 +72,55 @@ public class BoardPresenter implements BoardContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        mView.showRefreshing(false);
                     }
 
                     @Override
-                    public void onNext(Integer integer) {
-
+                    public void onNext(Response<List<Message>> listResponse) {
+                        mMessageRecyclerAdapter.setData(listResponse.getData());
                     }
                 });
     }
 
     @Override
     public void loadMore() {
-        Observable.just(0)
-                .delay(3, TimeUnit.SECONDS)
+        mMessageApi.getMessages(mCommunity.getId(), Config.PAGE_SIZE, mCurrentPage + 1, null, mKeyword)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Integer>() {
+                .subscribe(new Subscriber<Response<List<Message>>>() {
                     @Override
                     public void onCompleted() {
                         mView.showLoadMore(false);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mView.showLoadMore(false);
+                    }
+
+                    @Override
+                    public void onNext(Response<List<Message>> listResponse) {
+                        List<Message> data = listResponse.getData();
+                        if (data.size() == 0) {
+                            mView.showNoMore();
+                        } else {
+                            mMessageRecyclerAdapter.addMoreData(data);
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void search(final String keyword) {
+        mKeyword = keyword;
+        mCurrentPage = 1;
+        mMessageApi.getMessages(mCommunity.getId(), Config.PAGE_SIZE, 1, null, mKeyword)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Response<List<Message>>>() {
+                    @Override
+                    public void onCompleted() {
+
                     }
 
                     @Override
@@ -108,8 +129,15 @@ public class BoardPresenter implements BoardContract.Presenter {
                     }
 
                     @Override
-                    public void onNext(Integer integer) {
-
+                    public void onNext(Response<List<Message>> listResponse) {
+                        List<Message> data = listResponse.getData();
+                        if (data.size() == 0) {
+                            mView.showNoSearchResult();
+                        } else {
+                            mMessageRecyclerAdapter.setData(data);
+                            mView.showKeyword(mCommunity, keyword);
+                            mCurrentPage++;
+                        }
                     }
                 });
     }

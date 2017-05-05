@@ -1,125 +1,30 @@
 package cn.kalyter.css.model;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Kalyter on 2017-4-10 0010.
  */
 
 public class Message {
-    private Integer id;
 
-    private Integer userId;
-
-    private String avatar;
-
-    private String nickname;
-
-    private Integer repostId;
-
-    private String repostContent;
-
+    private int id;
+    private int communityId;
     private String content;
-
-    private Integer likeStatus;
-
-    private String deviceName;
-
-    private Integer collectCount;
-
-    private Integer commentCount;
-
-    private Integer repostCount;
-
-    private Integer likeCount;
-
-    private List<String> images;
-
+    private User user;
+    private int userId;
+    private boolean isTop;
     private Date postTime;
+    private String source;
+    private Date topEndTime;
+    private Date topStartTime;
 
-    private String theme;
-
-    private String location;
-
-    private String tag;
-
-    private Date createTime;
-
-    private Date updateTime;
-
-    private Boolean isDeleted;
-
-    public Integer getRepostId() {
-        return repostId;
+    public int getCommunityId() {
+        return communityId;
     }
 
-    public void setRepostId(Integer repostId) {
-        this.repostId = repostId;
-    }
-
-    public String getRepostContent() {
-        return repostContent;
-    }
-
-    public void setRepostContent(String repostContent) {
-        this.repostContent = repostContent;
-    }
-
-    public Integer getLikeStatus() {
-        return likeStatus;
-    }
-
-    public void setLikeStatus(Integer likeStatus) {
-        this.likeStatus = likeStatus;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getDeviceName() {
-        return deviceName;
-    }
-
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
-    }
-
-    public List<String> getImages() {
-        return images;
-    }
-
-    public void setImages(List<String> images) {
-        this.images = images;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setCommunityId(int communityId) {
+        this.communityId = communityId;
     }
 
     public String getContent() {
@@ -127,39 +32,23 @@ public class Message {
     }
 
     public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+        this.content = content;
     }
 
-    public Integer getCollectCount() {
-        return collectCount;
+    public int getId() {
+        return id;
     }
 
-    public void setCollectCount(Integer collectCount) {
-        this.collectCount = collectCount;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Integer getCommentCount() {
-        return commentCount;
+    public boolean getIsTop() {
+        return isTop;
     }
 
-    public void setCommentCount(Integer commentCount) {
-        this.commentCount = commentCount;
-    }
-
-    public Integer getRepostCount() {
-        return repostCount;
-    }
-
-    public void setRepostCount(Integer repostCount) {
-        this.repostCount = repostCount;
-    }
-
-    public Integer getLikeCount() {
-        return likeCount;
-    }
-
-    public void setLikeCount(Integer likeCount) {
-        this.likeCount = likeCount;
+    public void setIsTop(boolean isTop) {
+        this.isTop = isTop;
     }
 
     public Date getPostTime() {
@@ -170,52 +59,43 @@ public class Message {
         this.postTime = postTime;
     }
 
-    public String getTheme() {
-        return theme;
+    public String getSource() {
+        return source;
     }
 
-    public void setTheme(String theme) {
-        this.theme = theme == null ? null : theme.trim();
+    public void setSource(String source) {
+        this.source = source;
     }
 
-    public String getLocation() {
-        return location;
+    public Date getTopEndTime() {
+        return topEndTime;
     }
 
-    public void setLocation(String location) {
-        this.location = location == null ? null : location.trim();
+    public void setTopEndTime(Date topEndTime) {
+        this.topEndTime = topEndTime;
     }
 
-    public String getTag() {
-        return tag;
+    public Date getTopStartTime() {
+        return topStartTime;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag == null ? null : tag.trim();
+    public void setTopStartTime(Date topStartTime) {
+        this.topStartTime = topStartTime;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public User getUser() {
+        return user;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
-
-    public Boolean getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
 }
