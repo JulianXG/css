@@ -11,9 +11,21 @@ import cn.kalyter.css.util.BaseView;
 public interface ProfileContract {
     interface View extends BaseView {
         void showUser(User user);
+
+        void showLoading();
+
+        void showChangeSuccess();
+
+        void showActionFail();
+
+        void closeLoading();
     }
 
     interface Presenter extends BasePresenter {
         void loadUser();
+
+        void changeProfile(User user);
+
+        void refreshUser();
     }
 }

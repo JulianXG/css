@@ -9,10 +9,16 @@ import cn.kalyter.css.util.BaseView;
 
 public interface FeedbackContract {
     interface View extends BaseView {
+        void showSubmitting();
 
+        void showSubmitSuccess();
+
+        void closeSubmitting();
+
+        void showSubmitFail();
     }
 
     interface Presenter extends BasePresenter {
-
+        void submitFeedback(String content);
     }
 }

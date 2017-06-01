@@ -167,13 +167,13 @@ public class RepairRecordActivity extends BaseActivity implements RepairRecordCo
 
     @Override
     public void showOwner() {
-        mTitleText = getString(R.string.my_payment);
+        mTitleText = getString(R.string.my_repair);
         mTitle.setText(mTitleText);
     }
 
     @Override
     public void showProperty() {
-        mTitleText = getString(R.string.payment_center);
+        mTitleText = getString(R.string.repair_management_center);
         mTitle.setText(mTitleText);
     }
 

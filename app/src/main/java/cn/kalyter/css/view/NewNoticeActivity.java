@@ -99,7 +99,7 @@ public class NewNoticeActivity extends BaseActivity implements NewNoticeContract
         timePickerView.show();
     }
 
-    private NewNoticePresenter mPresenter;
+    private NewNoticeContract.Presenter mPresenter;
     private ProgressDialog mProgressDialog;
     private Message mMessage;
 

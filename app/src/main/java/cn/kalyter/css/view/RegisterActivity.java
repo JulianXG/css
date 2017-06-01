@@ -14,7 +14,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -25,6 +24,7 @@ import cn.kalyter.css.presenter.RegisterPresenter;
 import cn.kalyter.css.util.App;
 import cn.kalyter.css.util.BaseActivity;
 import cn.kalyter.css.util.Config;
+import cn.kalyter.css.util.Util;
 
 /**
  * Created by Kalyter on 2017-5-3 0003.
@@ -79,7 +79,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String userJSON = getIntent().getStringExtra(Config.BUNDLE_USER);
-        mUser = JSON.parseObject(userJSON, User.class);
+        mUser = Util.deserialize(userJSON, User.class);
         mTitle.setText(R.string.register);
         mProgressDialog = new ProgressDialog(this);
         mMale.setChecked(true);

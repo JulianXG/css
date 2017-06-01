@@ -77,7 +77,7 @@ public class MyMessagePresenter implements MyMessageContract.Presenter {
     @Override
     public void loadMore() {
         mMessageApi.getMessages(mUser.getCommunityId(), Config.PAGE_SIZE,
-                mCurrentPage + 1, null, mKeyword)
+                mCurrentPage + 1, mUser.getId(), mKeyword)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Response<List<Message>>>() {
@@ -109,7 +109,7 @@ public class MyMessagePresenter implements MyMessageContract.Presenter {
         mKeyword = keyword;
         mCurrentPage = 1;
         mMessageApi.getMessages(mUser.getCommunityId(), Config.PAGE_SIZE,
-                1, null, mKeyword)
+                1, mUser.getId(), mKeyword)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Response<List<Message>>>() {
@@ -139,7 +139,6 @@ public class MyMessagePresenter implements MyMessageContract.Presenter {
     @Override
     public void loadRole() {
         if (mUser.getRoleId() == Config.ROLE_PROPERTY) {
-            mUser.setId(null);
             mView.showProperty();
         } else if (mUser.getRoleId() == Config.ROLE_OWNER) {
             mView.showOwner();

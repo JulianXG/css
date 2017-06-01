@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.alibaba.fastjson.JSON;
 import com.bigkoo.pickerview.OptionsPickerView;
 
 import butterknife.BindView;
@@ -25,6 +24,7 @@ import cn.kalyter.css.presenter.IdentityTypePresenter;
 import cn.kalyter.css.util.App;
 import cn.kalyter.css.util.BaseActivity;
 import cn.kalyter.css.util.Config;
+import cn.kalyter.css.util.Util;
 
 /**
  * Created by Kalyter on 2017-4-9 0009.
@@ -115,7 +115,7 @@ public class IdentityTypeActivity extends BaseActivity implements
     @Override
     public void showRegister(User user) {
         Intent intent = new Intent(this, RegisterActivity.class);
-        intent.putExtra(Config.BUNDLE_USER, JSON.toJSONString(user));
+        intent.putExtra(Config.BUNDLE_USER, Util.serialize(user));
         startActivity(intent);
         finish();
     }

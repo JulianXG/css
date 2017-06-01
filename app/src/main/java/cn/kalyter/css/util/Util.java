@@ -6,6 +6,9 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -103,5 +106,19 @@ public final class Util {
                         Config.REQUEST_CODE_PERMISSION);
             }
         }
+    }
+
+    public static Gson getGsonInstance() {
+        return new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                .create();
+    }
+
+    public static <T> String serialize(T object) {
+        return getGsonInstance().toJson(object);
+    }
+
+    public static <T> T deserialize(String serializeContent, Class<T> classOfT) {
+        return getGsonInstance().fromJson(serializeContent, classOfT);
     }
 }

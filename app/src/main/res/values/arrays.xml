@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <array name="genders">
+        <item>男</item>
+        <item>女</item>
+    </array>
+
     <array name="community_names">
         <item>大成名店公园</item>
         <item>赛世香樟园</item>

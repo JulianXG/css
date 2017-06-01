@@ -14,6 +14,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/avatar_container"
             android:orientation="vertical"
             android:paddingLeft="16dp"
             android:background="?android:selectableItemBackground"
@@ -22,7 +23,6 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/avatar_container"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_height">
@@ -46,6 +46,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/background_container"
             android:orientation="vertical"
             android:paddingLeft="16dp"
             android:background="?android:selectableItemBackground"
@@ -54,7 +55,6 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/background_container"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_height">
@@ -78,6 +78,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/nickname_container"
             android:orientation="vertical"
             android:paddingLeft="16dp"
             android:background="?android:selectableItemBackground"
@@ -86,7 +87,6 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/nickname_container"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_height">
@@ -114,6 +114,7 @@
 
 
         <LinearLayout
+            android:id="@+id/birthday_container"
             android:orientation="vertical"
             android:background="?android:selectableItemBackground"
             android:clickable="true"
@@ -122,7 +123,6 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/birthday_container"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_height">
@@ -150,6 +150,7 @@
 
 
         <LinearLayout
+            android:id="@+id/gender_container"
             android:orientation="vertical"
             android:background="?android:selectableItemBackground"
             android:clickable="true"
@@ -158,7 +159,6 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/gender_container"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_height">
@@ -185,6 +185,7 @@
 
 
         <LinearLayout
+            android:id="@+id/bind_tel_container"
             android:orientation="vertical"
             android:background="?android:selectableItemBackground"
             android:clickable="true"
@@ -193,7 +194,6 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/bind_tel_container"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_height">
@@ -219,6 +219,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/community_address_container"
             android:orientation="vertical"
             android:background="?android:selectableItemBackground"
             android:clickable="true"
@@ -227,7 +228,6 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/community_address_container"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_height">
@@ -253,6 +253,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/address_container"
             android:orientation="vertical"
             android:background="?android:selectableItemBackground"
             android:clickable="true"
@@ -261,7 +262,6 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:id="@+id/address_container"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_height">

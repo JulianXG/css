@@ -3,14 +3,18 @@ package cn.kalyter.css.data;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.concurrent.TimeUnit;
 
+import cn.kalyter.css.data.repository.IdentityRepository;
 import cn.kalyter.css.data.repository.LocateRepository;
 import cn.kalyter.css.data.repository.MessageRepository;
 import cn.kalyter.css.data.repository.SplashRepository;
-import cn.kalyter.css.data.repository.UserApiRepository;
 import cn.kalyter.css.data.repository.UserRepository;
 import cn.kalyter.css.data.source.CommunityApi;
+import cn.kalyter.css.data.source.FeedbackApi;
 import cn.kalyter.css.data.source.HouseApi;
 import cn.kalyter.css.data.source.IdentitySource;
 import cn.kalyter.css.data.source.LocateSource;
@@ -25,7 +29,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.fastjson.FastJsonConverterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Kalyter on 2017-4-8 0008.
@@ -45,6 +49,7 @@ public final class InjectClass {
     private MessageApi mMessageApi;
     private PaymentApi mPaymentApi;
     private RepairApi mRepairApi;
+    private FeedbackApi mFeedbackApi;
     private Retrofit mRetrofit;
 
     public InjectClass(Context context) {
@@ -52,7 +57,7 @@ public final class InjectClass {
         mSplashSource = new SplashRepository(mContext);
         mLocateSource = new LocateRepository(mContext);
         mUserSource = new UserRepository(mContext);
-        mUserApi = new UserApiRepository();
+        mIdentitySource = new IdentityRepository(mContext);
         mMessageApi = new MessageRepository(mContext);
         mRetrofit = initRetrofit();
     }
@@ -89,6 +94,10 @@ public final class InjectClass {
         return mRetrofit.create(UserApi.class);
     }
 
+    public FeedbackApi getFeedbackApi() {
+        return mRetrofit.create(FeedbackApi.class);
+    }
+
     public CommunityApi getCommunityApi() {
         return mRetrofit.create(CommunityApi.class);
     }
@@ -110,10 +119,13 @@ public final class InjectClass {
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .addInterceptor(httpLoggingInterceptor)
                 .build();
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                .create();
         return new Retrofit.Builder()
                 .baseUrl(Config.API_ROOT_URL)
                 .client(client)
-                .addConverterFactory(FastJsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
     }

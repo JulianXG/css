@@ -3,15 +3,17 @@ package cn.kalyter.css.util;
 import android.os.Build;
 
 import java.text.SimpleDateFormat;
+import java.util.regex.Pattern;
 
 /**
  * Created by Kalyter on 2017-4-9 0009.
  */
 
 public final class Config {
-//    public static final String API_ROOT_URL = "http://192.168.253.1:5000";
-//    public static final String API_ROOT_URL = "http://192.168.1.111:5000";
     public static final String API_ROOT_URL = "http://kalyter.cn:2000";
+    //    public static final String API_ROOT_URL = "http://192.168.1.111:5000";
+//    public static final String API_ROOT_URL = "http://172.19.209.1:5000";
+//    public static final String API_ROOT_URL = "http://192.168.253.1:5000";
 
     // 服务端返回码
     public static final int RESPONSE_SUCCESS_CODE = 200;
@@ -32,7 +34,7 @@ public final class Config {
     public static final String LOCAL_DEVICE = Build.BRAND + " " + Build.MODEL;
 
 
-    public static final SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy年MM月dd号");
+    public static final SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
     public static final SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyy年MM月dd号 HH:mm:ss");
 
     public static final int REQUEST_CODE_PERMISSION = 1000;
@@ -70,4 +72,7 @@ public final class Config {
     public static final int STATUS_REPAIR_FINISHED = 2;
 
     public static final int PAGE_SIZE = 10;
+
+    // 正则表达式
+    public static final Pattern TEL_PATTERN = Pattern.compile("^[1]([3][0-9]{1}|59|58|88|89)[0-9]{8}$");
 }

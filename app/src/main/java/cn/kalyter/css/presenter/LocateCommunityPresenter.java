@@ -104,9 +104,9 @@ public class LocateCommunityPresenter implements
         mLocationClient.registerLocationListener(this);
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
-        option.setAddrType("all");// 返回的定位结果包含地址信息
-        option.setCoorType("bd09ll");// 返回的定位结果是百度经纬度,默认值gcj02
-        option.setIsNeedAddress(true);// 返回的定位结果包含地址信息
+        option.setAddrType("all");
+        option.setCoorType("bd09ll");
+        option.setIsNeedAddress(true);
         option.setScanSpan(500);
         option.setIsNeedLocationDescribe(true);
         mLocationClient.setLocOption(option);

@@ -1,5 +1,6 @@
 package cn.kalyter.css.view;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -10,10 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.kalyter.css.R;
 import cn.kalyter.css.contract.FeedbackContract;
+import cn.kalyter.css.presenter.FeedbackPresenter;
+import cn.kalyter.css.util.App;
 import cn.kalyter.css.util.BaseActivity;
 
 /**
@@ -35,10 +37,12 @@ public class FeedbackActivity extends BaseActivity implements FeedbackContract.V
         if (TextUtils.isEmpty(mFeedbackContent.getText())) {
             Toast.makeText(this, R.string.feedback_require, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, R.string.send_feedback_success, Toast.LENGTH_SHORT).show();
-            finish();
+            mPresenter.submitFeedback(mFeedbackContent.getText().toString());
         }
     }
+
+    private FeedbackContract.Presenter mPresenter;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +54,44 @@ public class FeedbackActivity extends BaseActivity implements FeedbackContract.V
                 finish();
             }
         });
+
+        mProgressDialog = new ProgressDialog(this);
+
+        mPresenter.start();
     }
 
     @Override
     protected void setupPresenter() {
-
+        mPresenter = new FeedbackPresenter(this,
+                App.getInjectClass().getUserSource(),
+                App.getInjectClass().getFeedbackApi());
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_feedback;
+    }
+
+    @Override
+    public void showSubmitting() {
+        mProgressDialog.setMessage(getString(R.string.posting));
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.show();
+    }
+
+    @Override
+    public void showSubmitSuccess() {
+        Toast.makeText(this, R.string.send_feedback_success, Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    @Override
+    public void closeSubmitting() {
+        mProgressDialog.dismiss();
+    }
+
+    @Override
+    public void showSubmitFail() {
+        Toast.makeText(this, "反馈意见上传失败，请尝试重新上传", Toast.LENGTH_SHORT).show();
     }
 }

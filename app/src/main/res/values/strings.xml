@@ -136,4 +136,5 @@
     <string name="payment_center">缴费中心</string>
     <string name="repair_center">报修中心</string>
     <string name="community_address">小区地址</string>
+    <string name="change_profile">修改个人信息</string>
 </resources>
